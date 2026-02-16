@@ -1,0 +1,23 @@
+name: Deploy to VPS
+
+on:
+  workflow_dispatch:  # manual trigger
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: SSH Deploy
+        uses: appleboy/ssh-action@v0.1.8
+        with:
+          host: hr.jg-suite.cloud
+          username: deployer
+          key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC3NkWlzR2jsgSHZB6ZWPCdFoNRR5oQ/eYpm8xLGxODQzoidmASF9zPnJX86EajO3q76jB0Ls8/FbYtYVRqcZWxWzFToOfgESY6urG3hHq/IYNAKtpF2WwsfCr02UMfGJH3bDhpR+bhU71mfCX0xSSA43LOPzd147iyXa9PXIailTZ2801C423ElxpsIFHS7+xGmRx//R2c1LlNLicnstdeQbcQcDdnjvhjmnXVqZXFYAdEWk7cwnIb/EOEe5kA/wqxOeQh9BFOk25ivLBaco3v0xQMrsvBrv2LrDMa/CmW7wd5mxPQ0OWiZ4mMJ3wo78IYhTiy4QdjsBYlnbdHZOoo7RZldyLHLn+cis5F54SfUgb/fTfPhbtrgS3owjYxbK7fpo6PxJAP/M9Q9FrHjBa4/JZezH5YZ+xyc0QnOfH+HUB33Jx3B5KpRqm+ucxJme0gelj3pdQnBoN28TtRY/iAh1e4viQ/FSugVsxDV0SmMl6PVGvwowedzQrM5bPeqRxs2eVUQk4sVEuugz9Ml1Cn/9Xwg9CPymqrQHukmYtSurKwG7Eo3SWlXOb2pVYYxwgXiMS1+3gQAbFGyC/zsLVWsZ0wV6f9KF2RkMjWwoe0fOGbMoTefz5dkpw9U319a2KkWHEPlvZHoG4rj0G69EekQEM4HOunRbHoj8hGOPIa+Q== deploy@jg-suite
+          port: 22
+          script: |
+            cd /home/jgsuite/public_html
+            git pull origin main
