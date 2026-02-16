@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electric Core Contact – Updated</title>
+
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
+}
+
+body{
+  background:#070707;
+  color:#eaeaea;
+  overflow-x:hidden;
+}
+
+/* ================= LAYOUT ================= */
+.contact-section{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:0.9fr 1.3fr;
+}
+
+/* ================= FORM SIDE ================= */
+.contact-form-box{
+  padding:120px 12%;
+  background:linear-gradient(180deg,#0f0f0f,#080808);
+  position:relative;
+  overflow:hidden;
+}
+
+/* FRAME */
+.contact-form-box::before{
+  content:"";
+  position:absolute;
+  inset:30px;
+  border:1px solid #2a2a2a;
+}
+
+/* TOP POWER LINE */
+.power-line{
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+  opacity:.35;
+}
+
+h2{
+  font-size:44px;
+  letter-spacing:6px;
+  margin-bottom:70px;
+  text-transform:uppercase;
+}
+
+/* ================= INPUT ================= */
+.input-group{
+  position:relative;
+  margin-bottom:50px;
+}
+
+.input-group input,
+.input-group textarea{
+  width:100%;
+  padding:22px 18px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid #3a3a3a;
+  color:#fff;
+  outline:none;
+}
+
+.input-group textarea{
+  height:160px;
+  resize:none;
+}
+
+.input-group label{
+  position:absolute;
+  top:50%;
+  left:18px;
+  transform:translateY(-50%);
+  font-size:13px;
+  color:#777;
+  background:#0f0f0f;
+  padding:0 10px;
+  letter-spacing:2px;
+  transition:.3s;
+}
+
+.input-group input:focus + label,
+.input-group textarea:focus + label,
+.input-group input:valid + label,
+.input-group textarea:valid + label{
+  top:-14px;
+  font-size:11px;
+  color:#fff;
+}
+
+/* ELECTRIC LINE */
+.spark{
+  position:absolute;
+  bottom:-1px;
+  left:0;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+}
+
+/* ================= BATTERY ================= */
+.battery-box{
+  margin:30px 0;
+  border:1px solid #444;
+  height:14px;
+  position:relative;
+}
+
+.battery-fill{
+  height:100%;
+  width:0%;
+  background:#fff;
+  transition:.3s;
+}
+
+.battery-text{
+  margin-top:8px;
+  font-size:11px;
+  letter-spacing:2px;
+  opacity:.6;
+}
+
+/* ================= BUTTON ================= */
+button{
+  margin-top:40px;
+  padding:22px;
+  width:100%;
+  background:#0d0d0d;
+  border:1px solid #666;
+  color:#fff;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+
+.btn-energy{
+  position:absolute;
+  inset:0;
+  left:-120%;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+  opacity:.35;
+}
+
+/* ================= IMAGE SIDE ================= */
+.contact-visual{
+  position:relative;
+  background:#090909;
+  overflow:hidden;
+}
+
+/* GRID */
+.grid{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(#111 1px, transparent 1px),
+    linear-gradient(90deg,#111 1px, transparent 1px);
+  background-size:40px 40px;
+  opacity:.22;
+}
+
+/* ENERGY CORE */
+.core{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:280px;
+  height:280px;
+  border:1px solid #fff;
+  transform:translate(-50%,-50%);
+  animation:corePulse 2s infinite alternate;
+}
+
+.core::before{
+  content:"";
+  position:absolute;
+  inset:-80px;
+  border:1px solid #555;
+  animation:rotate 10s linear infinite;
+}
+
+.core::after{
+  content:"";
+  position:absolute;
+  inset:-150px;
+  border:1px solid #333;
+  animation:rotate 18s linear infinite reverse;
+}
+
+@keyframes rotate{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+@keyframes corePulse{
+  from{box-shadow:0 0 20px #fff}
+  to{box-shadow:0 0 60px #fff}
+}
+
+/* SCAN LINE */
+.scan{
+  position:absolute;
+  top:-100%;
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+  opacity:.4;
+}
+
+/* LIGHTNING */
+.lightning{
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      120deg,
+      transparent,
+      transparent 46%,
+      rgba(255,255,255,.08) 50%,
+      transparent 54%
+    );
+  opacity:.6;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  .contact-section{grid-template-columns:1fr;}
+  .contact-visual{min-height:520px;}
+  .core{width:200px;height:200px;}
+}
+</style>
+</head>
+
+<body>
+
+<section class="contact-section">
+
+  <!-- FORM -->
+  <div class="contact-form-box">
+    <div class="power-line"></div>
+    <h2>Contact</h2>
+
+    <form id="powerForm">
+      <div class="input-group">
+        <input type="text" required>
+        <label>Name</label>
+        <span class="spark"></span>
+      </div>
+
+      <div class="input-group">
+        <input type="email" required>
+        <label>Email</label>
+        <span class="spark"></span>
+      </div>
+
+      <div class="input-group">
+        <input type="tel" required>
+        <label>Phone</label>
+        <span class="spark"></span>
+      </div>
+
+      <div class="input-group">
+        <textarea required></textarea>
+        <label>Message</label>
+        <span class="spark"></span>
+      </div>
+
+      <div class="battery-box">
+        <div class="battery-fill"></div>
+      </div>
+      <div class="battery-text">BATTERY: <span id="battery">0</span>%</div>
+
+      <button type="submit">
+        Send Message
+        <span class="btn-energy"></span>
+      </button>
+    </form>
+  </div>
+
+  <!-- VISUAL -->
+  <div class="contact-visual">
+    <div class="grid"></div>
+    <div class="scan"></div>
+    <div class="core"></div>
+    <div class="lightning"></div>
+  </div>
+
+</section>
+
+<script>
+const inputs=document.querySelectorAll("input, textarea");
+const sparks=document.querySelectorAll(".spark");
+const powerLine=document.querySelector(".power-line");
+const scan=document.querySelector(".scan");
+const batteryFill=document.querySelector(".battery-fill");
+const batteryText=document.getElementById("battery");
+const btnEnergy=document.querySelector(".btn-energy");
+
+let battery=0;
+
+inputs.forEach((input,i)=>{
+  input.addEventListener("focus",()=>{
+    sparks[i].style.width="100%";
+    charge(10);
+    pulse();
+  });
+});
+
+function charge(val){
+  battery=Math.min(100,battery+val);
+  batteryFill.style.width=battery+"%";
+  batteryText.textContent=battery;
+}
+
+function pulse(){
+  powerLine.animate([{left:"-100%"},{left:"100%"}],{duration:800});
+  scan.animate([{top:"-100%"},{top:"120%"}],{duration:900});
+}
+
+setInterval(()=>{if(Math.random()>.6)pulse()},2000);
+
+document.querySelector("button").addEventListener("mouseenter",()=>{
+  btnEnergy.animate([{left:"-120%"},{left:"120%"}],{duration:800});
+});
+</script>
+
+</body>
+</html>
